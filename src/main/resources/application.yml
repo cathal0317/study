@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: study-project
+
+  data:
+    mongodb:
+      uri: ${DB_URI}
+      host: ${DB_HOST}
+      port: ${DB_PORT}
+      database: ${DB_NAME}
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      authentication-database: ${DB_AUTH}
+
+server:
+  port: 8080
+
+api:
+  key: ${API_KEY}
