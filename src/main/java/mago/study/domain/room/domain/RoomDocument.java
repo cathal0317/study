@@ -18,10 +18,12 @@ public class RoomDocument extends BaseDocument {
     @Id
     private String id;
     private String character;
+    private Long messageCount;
 
     public static RoomDocument of(RoomAddDto roomAddDto) {
         return RoomDocument.builder()
                 .character(roomAddDto.character())
+                .messageCount(0L)
                 .build();
     }
 }

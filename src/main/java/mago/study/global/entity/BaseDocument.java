@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class BaseDocument{
     @CreatedDate
-    private LocalDateTime createTime;
+    private LocalDateTime createAt;
     @LastModifiedDate
-    private LocalDateTime updateTime;
+    private LocalDateTime updateAt;
 }
