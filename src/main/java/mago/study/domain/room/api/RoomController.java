@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import mago.study.domain.room.application.RoomService;
 import mago.study.domain.room.dto.RoomAddDto;
 import mago.study.domain.room.dto.RoomGetDto;
+import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,8 @@ public class RoomController {
     private final RoomService roomService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody RoomAddDto roomAddDto) {
-        String roomId = roomService.createRoom(roomAddDto);
+    public ResponseEntity<ObjectId> create(@RequestBody RoomAddDto roomAddDto) {
+        ObjectId roomId = roomService.createRoom(roomAddDto);
         return ResponseEntity.ok(roomId);
     }
 
@@ -30,7 +31,7 @@ public class RoomController {
 
     @GetMapping("/{roomId}")
     public ResponseEntity<RoomGetDto> getRoom(
-            @PathVariable String roomId
+            @PathVariable ObjectId roomId
     ) {
         RoomGetDto roomGetDto = roomService.getRoom(roomId);
         return ResponseEntity.ok(roomGetDto);
@@ -46,7 +47,7 @@ public class RoomController {
 
     @DeleteMapping("/{roomId}")
     public ResponseEntity<Void> deleteRoom(
-            @PathVariable String roomId
+            @PathVariable ObjectId roomId
     ){
         roomService.deleteRoom(roomId);
         return ResponseEntity.noContent().build();

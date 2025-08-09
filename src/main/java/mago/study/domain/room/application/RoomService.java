@@ -8,6 +8,7 @@ import mago.study.domain.room.dto.RoomAddDto;
 import mago.study.domain.room.dto.RoomGetDto;
 import mago.study.global.exception.custom.BusinessException;
 import mago.study.global.exception.enums.ErrorCode;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class RoomService {
     private final RoomRepository roomRepository;
 
-    public String createRoom(RoomAddDto roomAddDto) {
+    public ObjectId createRoom(RoomAddDto roomAddDto) {
         RoomDocument roomDocument = roomRepository.save(RoomDocument.of(roomAddDto));
         return roomDocument.getId();
     }
@@ -29,7 +30,7 @@ public class RoomService {
                 .toList();
     }
 
-    public RoomGetDto getRoom(String roomId) {
+    public RoomGetDto getRoom(ObjectId roomId) {
         RoomDocument room = roomRepository.findById(roomId).orElseThrow(
                 () -> new BusinessException(roomId, "roomId", ErrorCode.ROOM_NOT_FOUND)
         );
@@ -41,7 +42,7 @@ public class RoomService {
         // TODO 채팅방 리셋 처리
     }
 
-    public void deleteRoom(String roomId) {
+    public void deleteRoom(ObjectId roomId) {
         roomRepository.deleteById(roomId);
     }
 }

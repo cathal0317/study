@@ -6,17 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mago.study.domain.room.dto.RoomAddDto;
 import mago.study.global.entity.BaseDocument;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "rooms")
+@Document(collection = "rooms")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class RoomDocument extends BaseDocument {
     @Id
-    private String id;
+    private ObjectId id;
     private String character;
     private Long messageCount;
 
