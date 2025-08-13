@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import mago.study.domain.room.dao.RoomRepository;
 import mago.study.domain.room.domain.RoomDocument;
 import mago.study.domain.room.dto.RoomAddDto;
+import mago.study.domain.room.dto.RoomCreateRes;
 import mago.study.domain.room.dto.RoomGetDto;
 import mago.study.global.exception.custom.BusinessException;
 import mago.study.global.exception.enums.ErrorCode;
@@ -18,9 +19,9 @@ import java.util.List;
 public class RoomService {
     private final RoomRepository roomRepository;
 
-    public ObjectId createRoom(RoomAddDto roomAddDto) {
+    public RoomCreateRes createRoom(RoomAddDto roomAddDto) {
         RoomDocument roomDocument = roomRepository.save(RoomDocument.of(roomAddDto));
-        return roomDocument.getId();
+        return new RoomCreateRes(roomDocument.getId().toHexString());
     }
 
     public List<RoomGetDto> getAll() {

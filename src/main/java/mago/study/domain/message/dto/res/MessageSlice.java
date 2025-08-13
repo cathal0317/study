@@ -8,10 +8,10 @@ import java.util.List;
 @Builder
 public record MessageSlice(
         List<MessageGetDto> messages,
-        ObjectId nextCursor,
+        String nextCursor,
         boolean hasMore
 ) {
-    public static MessageSlice of(List<MessageGetDto> messages, ObjectId nextCursor, boolean hasMore) {
+    public static MessageSlice of(List<MessageGetDto> messages, String nextCursor, boolean hasMore) {
         return MessageSlice.builder()
                 .messages(messages)
                 .nextCursor(nextCursor)

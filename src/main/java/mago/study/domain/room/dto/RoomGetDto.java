@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Builder
 public record RoomGetDto(
-        ObjectId roomId,
+        String roomId,
         String character,
         LocalDateTime createdAt,
         Long messageCount
@@ -17,7 +17,7 @@ public record RoomGetDto(
 
     public static RoomGetDto from(RoomDocument roomDocument){
         return RoomGetDto.builder()
-                .roomId(roomDocument.getId())
+                .roomId(roomDocument.getId().toHexString())
                 .character(roomDocument.getCharacter())
                 .createdAt(roomDocument.getCreateAt())
                 .messageCount(roomDocument.getMessageCount())

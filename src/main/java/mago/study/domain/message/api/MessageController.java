@@ -31,7 +31,7 @@ public class MessageController {
     public ResponseEntity<MessageSlice> getMessages(
             @PathVariable ObjectId roomId,
             @RequestParam(required = false) String before,
-            @RequestParam(required = false) int limit
+            @RequestParam(defaultValue = "20") int limit
     ) {
         MessageSlice messageHistory = messageService.getMessageHistory(roomId, before, limit);
         return ResponseEntity.ok(messageHistory);

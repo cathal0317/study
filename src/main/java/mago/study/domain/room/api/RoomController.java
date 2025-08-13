@@ -3,6 +3,7 @@ package mago.study.domain.room.api;
 import lombok.RequiredArgsConstructor;
 import mago.study.domain.room.application.RoomService;
 import mago.study.domain.room.dto.RoomAddDto;
+import mago.study.domain.room.dto.RoomCreateRes;
 import mago.study.domain.room.dto.RoomGetDto;
 import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class RoomController {
     private final RoomService roomService;
 
     @PostMapping
-    public ResponseEntity<ObjectId> create(@RequestBody RoomAddDto roomAddDto) {
-        ObjectId roomId = roomService.createRoom(roomAddDto);
-        return ResponseEntity.ok(roomId);
+    public ResponseEntity<RoomCreateRes> create(@RequestBody RoomAddDto roomAddDto) {
+        RoomCreateRes room = roomService.createRoom(roomAddDto);
+        return ResponseEntity.ok(room);
     }
 
     @GetMapping

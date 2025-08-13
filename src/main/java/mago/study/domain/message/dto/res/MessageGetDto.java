@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Builder
 public record MessageGetDto(
-        ObjectId messageId,
+        String messageId,
         Role role,
         String content,
         LocalDateTime createdAt
@@ -17,7 +17,7 @@ public record MessageGetDto(
 
     public static MessageGetDto from(MessageDocument message) {
         return MessageGetDto.builder()
-                .messageId(message.getId())
+                .messageId(message.getId().toHexString())
                 .role(message.getRole())
                 .content(message.getContent())
                 .createdAt(message.getCreateAt())
@@ -27,7 +27,7 @@ public record MessageGetDto(
     // TODO RAG 연동 후 삭제
     public static MessageGetDto mock() {
         return MessageGetDto.builder()
-                .messageId(new ObjectId("mockId"))
+                .messageId(new ObjectId().toHexString())
                 .role(Role.ASSISTANT)
                 .content("mock")
                 .createdAt(LocalDateTime.now())

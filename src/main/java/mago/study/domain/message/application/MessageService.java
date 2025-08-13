@@ -60,7 +60,7 @@ public class MessageService {
             list = list.subList(0, limit);
         }
 
-        ObjectId nextCursor = list.isEmpty() ? null : list.getLast().messageId(); // 마지막 _id
+        String nextCursor = list.isEmpty() ? null : list.getLast().messageId();
 
         return new MessageSlice(list, nextCursor, hasMore);
     }
