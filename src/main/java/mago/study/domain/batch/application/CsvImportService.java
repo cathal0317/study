@@ -113,6 +113,16 @@ public class CsvImportService {
         return new FileResult(path, counters.rowsRead(), counters.rowsSaved(), counters.rowsSkippedEmpty(), counters.errors(), null);
     }
 
+    private CSVFormat csvFormat() {
+        return CSVFormat.DEFAULT.builder()
+                .setHeader()
+                .setSkipHeaderRecord(true)
+                .setIgnoreSurroundingSpaces(true)
+                .setTrim(true)
+                .setQuote('"')
+                .build();
+    }
+
     private BufferedReader openReader(String location) throws Exception {
         Resource res = resourceLoader.getResource(location);
         if (res.exists()) {
@@ -153,16 +163,6 @@ public class CsvImportService {
         int saved = buffer.size();
         buffer.clear();
         return saved;
-    }
-
-    private static CSVFormat csvFormat() {
-        return CSVFormat.DEFAULT.builder()
-                .setHeader()
-                .setSkipHeaderRecord(true)
-                .setIgnoreSurroundingSpaces(true)
-                .setTrim(true)
-                .setQuote('"')
-                .build();
     }
 
     /**
