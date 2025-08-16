@@ -5,15 +5,16 @@ spring:
   data:
     mongodb:
       uri: ${DB_URI}
-      host: ${DB_HOST}
-      port: ${DB_PORT}
-      database: ${DB_NAME}
-      username: ${DB_USER}
-      password: ${DB_PASSWORD}
-      authentication-database: ${DB_AUTH}
 
 server:
   port: 8080
 
 api:
   key: ${API_KEY}
+
+tweet-import:
+  file-paths: classpath:data/realDonaldTrump_in_office.csv,classpath:data/realDonaldTrump_bf_office.csv
+  batch-size: 1000
+  remove-hashtag: true
+  remove-mention: true
+  remove-emoji: true
