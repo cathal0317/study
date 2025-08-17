@@ -47,5 +47,6 @@ public class RoomService {
 
     public void deleteRoom(ObjectId roomId) {
         roomRepository.deleteById(roomId);
+        messageRepository.deleteAllByRoomId(roomId);
     }
 }
